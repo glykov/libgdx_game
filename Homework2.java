@@ -28,7 +28,9 @@ public class Projectile {
 
     public void setup(Vector2 startPosition, float angle) {
         velocity.set(50.0f * MathUtils.cosDeg(angle), 50.0f * MathUtils.sinDeg(angle));
-        position.set(startPosition);
+        // если позиция не установлена или снаряд улетел за границу окна, установить позицию по центру танка
+        if (position.x <= 0 || position.x > 1280 || position.y <= 0 || position.y > 720)
+            position.set(startPosition);
     }
 
     public void update(float dt) {
